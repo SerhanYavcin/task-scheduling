@@ -20,6 +20,6 @@
 
 
 ## Usage
-1. Fetch task list provider `php bin/console app:task-manager sync`
+1. Fetch task list `php bin/console app:task-manager sync`
 2. Run `symfony server:start`
 3. Go to `http://localhost:8000`
