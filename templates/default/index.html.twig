@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task List{% endblock %}
+
+{% block body %}
+{% for week, developers in schedule %}
+    
+    <h2>{{ week }}</h2>
+    <table class="table align-middle mb-0 bg-white">
+        <thead>
+            <tr>
+                <th>Developer</th>
+                <th>Assigned Tasks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for developer, tasks in developers %}
+                <tr>
+                    <td>{{ developer }}</td>
+                    <td>
+                        <ul class="list-group">
+                            {% for task in tasks %}
+                                <li class="list-group-item"> Task: #{{ task.code }} - Duration: {{task.duration}} - Difficulty : {{task.difficulty}}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+
+<h4> Total Weeks:  {{totalWeeks}} </h4>
+{% endblock %}

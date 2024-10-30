@@ -16,7 +16,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class TaskManagerCommand extends Command
 {
     protected static $defaultName = 'app:task-manager';
-    protected static $defaultDescription = 'Sync tasks from external API or Assign tasks to developers';
+    protected static $defaultDescription = 'Sync tasks from external API or Create Task Provider';
 
     private HttpClientInterface $client;
     private TaskRepository $taskRepository;
@@ -34,7 +34,7 @@ class TaskManagerCommand extends Command
     {
         $this
             ->setDescription(self::$defaultDescription)
-            ->addArgument('operation', InputArgument::OPTIONAL, 'Task operation argument. Available operations: sync, assign, create-provider', 'sync');
+            ->addArgument('operation', InputArgument::OPTIONAL, 'Task operation argument. Available operations: sync, create-provider', 'sync');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -45,9 +45,6 @@ class TaskManagerCommand extends Command
         switch ($operation) {
             case 'sync':
                 $this->sync($io);
-                break;
-            case 'assign':
-                $io->success('Assigning tasks to developers');
                 break;
             case 'create-provider':
                 $this->createProvider($io);
